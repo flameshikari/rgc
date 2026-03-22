@@ -1,0 +1,77 @@
+command:
+  - journalctl
+
+rules:
+  - pattern: .*last message repeated \d+ times$
+    name: display this line in yellow and stop further processing
+    colors: [yellow]
+    count: stop
+
+  - pattern: ^... (\d| )\d \d\d:\d\d:\d\d(\s[-.\w\d]+?\s)
+    name: '''Jun  3 22:44:55 neutronium-02.my-domain.io '''
+    colors: [green, green, red]
+    count: once
+
+  - pattern: \(.*?\)
+    name: everything in parentheses
+    colors: [blue]
+
+  - pattern: \`.+?\'
+    name: everything in `'
+    colors: [bold yellow]
+
+  - pattern: \".*?\"
+    name: everything in "
+    colors: [blue]
+
+  - pattern: \s/[a-zA-Z_/\.\-\?\d\=\&]+
+    name: this is probably a pathname
+    colors: [blue]
+
+  - pattern: \<.*?\>
+    name: everything in <>
+    colors: [blue]
+
+  - pattern: ([\w/\.\-]+)(\[\d+?\])
+    name: name of process and pid
+    colors: [bold blue, bold red]
+
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(:\d{1,5})?
+    name: IPv4 or IPv4:Port
+    colors: [bold yellow]
+
+  - pattern: (([0-9a-fA-F]{1,4})?\:\:?[0-9a-fA-F]{1,4})+
+    name: IPv6
+    colors: [bold yellow]
+
+  - pattern: '[a-zA-z0-9\.\-\+]+\@[\w\-\.]+'
+    name: Email address
+    colors: [green]
+
+  - pattern: GET|POST|PUT|DELETE|PATCH|HEAD
+    name: HTTP verbs
+    colors: [green]
+
+  - pattern: \s\b2\d{2}\b\s
+    name: 2xx status
+    colors: [green]
+
+  - pattern: \s\b3\d{2}\b\s
+    name: 3xx status
+    colors: [yellow]
+
+  - pattern: \s\b4\d{2}\b\s
+    name: 4xx status
+    colors: [red]
+
+  - pattern: \s\b5\d{2}\b\s
+    name: 5xx status
+    colors: [red]
+
+  - pattern: status\=deferred|Connection refused
+    name: status deferred
+    colors: [red]
+
+  - pattern: connect
+    name: connect requires special attention
+    colors: [on_red]

@@ -1,0 +1,23 @@
+command:
+  - cvs
+
+rules:
+  - pattern: ^C .*$
+    name: conflict
+    colors: [bold red]
+
+  - pattern: ^M .*$
+    name: modified
+    colors: [bold blue]
+
+  - pattern: ^A .*$
+    name: added
+    colors: [cyan]
+
+  - pattern: ^R .*$
+    name: removed
+    colors: [cyan]
+
+  - pattern: ^\? .*$
+    name: unlisted
+    colors: [bold]

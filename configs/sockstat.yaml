@@ -1,0 +1,96 @@
+command:
+  - sockstat
+
+rules:
+  - pattern: ^[A-Z\s%]*([A-Z]{3})[A-Z\s%]*$
+    name: CAPS LINE
+    colors: [underline]
+
+  - pattern: ^root(?=\s|$)
+    name: root
+    colors: [bold red]
+
+  - pattern: ^(?:(?!root|USER))([^\s]+)
+    name: non-root users
+    colors: [bold yellow, unchanged]
+
+  - pattern: ^[a-zA-Z]+\w+\s+(\w+)\s+\d+
+    name: CMD
+    colors: [unchanged, bold cyan]
+
+  - pattern: ^[a-zA-Z]+\w+\s+\w+\s+\d+\s+(\d+)
+    name: FD
+    colors: [unchanged, yellow]
+
+  - pattern: ^[a-zA-Z]+\w+\s+[a-zA-Z]+\w+\s+(\d+)
+    name: PID
+    colors: [unchanged, bold magenta]
+
+  - pattern: (tcp4|udp4|tcp6|udp6|stream|dgram)
+    name: PROTOCOLS
+    colors: [bold blue]
+
+  - pattern: ([\w\.\-]+):([\w\-]+)\b
+    name: hostname:service
+    colors: [yellow, bold green, bold yellow]
+
+  - pattern: ([\w\.\-]+):(\d+)\b
+    name: hostname:port
+    colors: [yellow, bold green, bold red]
+
+  - pattern: (\*):([\w\-]+)\b
+    name: '*:service'
+    colors: [yellow, yellow, bold red]
+
+  - pattern: \s\/.*\/(\S+)($| \(.*\))
+    name: PATH
+    colors: [green, bright_green, red]
+
+  - pattern: FIN_WAIT.*
+    name: status
+    colors: [red]
+
+  - pattern: SYN.*?
+    name: status
+    colors: [bold red]
+
+  - pattern: LISTEN(ING)?
+    name: status
+    colors: [bold blue]
+
+  - pattern: TIME_WAIT
+    name: status
+    colors: [bold red]
+
+  - pattern: CLOS(E(_WAIT)?|ING)
+    name: status
+    colors: [red]
+    skip: true
+
+  - pattern: LAST_ACK
+    name: status
+    colors: [red]
+
+  - pattern: ESTAB.*?\b|CONNECTED
+    name: status
+    colors: [bold yellow]
+
+  - pattern: FREE
+    name: status
+    colors: [bold green]
+
+  - pattern: DISCONNECTING
+    name: status
+    colors: [red]
+
+  - pattern: CONNECTING
+    name: status
+    colors: [green]
+
+  - pattern: CONNECTING
+    name: status
+    colors: [green]
+
+  - pattern: UNKNOWN
+    name: status
+    colors: [blink bold red]

@@ -1,0 +1,39 @@
+command:
+  - fdisk
+
+rules:
+  - pattern: 'fdisk: cannot open ([^:]+).*$'
+    name: Error
+    colors: [red, bold red]
+
+  - pattern: '^(Disk) (?:\/([^\/: ]+))+'
+    name: Disk
+    colors: [yellow, on_yellow black, bold yellow]
+
+  - pattern: \*\s\s\s
+    name: Boot?
+    colors: [on_red bold white]
+
+  - pattern: '^(?:\/([^\/: ]+))+'
+    name: Partitions
+    colors: [green, bold green]
+
+  - pattern: 'type: (.*)$'
+    name: Type
+    colors: [unchanged, bold cyan]
+
+  - pattern: 'identifier: (.*)$'
+    name: ID
+    colors: [unchanged, cyan]
+
+  - pattern: \s\d*[.,]?\d*\s?Ki?B?
+    name: Size 'K'
+    colors: [green]
+
+  - pattern: \s\d*[.,]?\d*\s?Mi?B?
+    name: Size 'M'
+    colors: [yellow]
+
+  - pattern: \s\d+[.,]?\d*\s?Gi?B?
+    name: Size 'G'
+    colors: [red]

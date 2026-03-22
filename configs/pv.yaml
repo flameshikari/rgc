@@ -1,0 +1,10 @@
+command:
+  - pv
+
+rules:
+  - pattern: (\s|^)\d+([.,]\d+)?\s?([kKMG][bB]|[bB]|[kKMG])(?=[\s,]|$)
+    name: size
+    colors: [yellow]
+
+  - pattern: <=>
+    colors: [yellow]

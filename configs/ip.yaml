@@ -1,0 +1,197 @@
+command:
+  - ip addr
+  - ip address
+  - ip link
+  - ip a
+  - ip l
+  - ip route
+  - ip r
+  - ip neighbor
+  - ip neigh
+  - ip n
+  - ip
+
+rules:
+  - pattern: inet\s([^\/]+)\/(\d+)
+    name: IP4
+    colors: [default, bold yellow, bold magenta]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: brd\s([^}\s]+)
+    name: broadcast
+    colors: [default, dark cyan]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: \bdynamic\b
+    name: dynamic
+    colors: [dark green]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: inet6\s([^\/]+)\/(\d+)
+    name: IP6
+    colors: [default, yellow, magenta]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: link\/ether\s(\S+)\s
+    name: MAC
+    colors: [default, magenta]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: (\d+):\s(\S+):.+state (UP)
+    name: State UP
+    colors: [default, bright_white, bold green, bold green]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: (\d+):\s(\S+):.+state (DOWN)
+    name: State DOWN
+    colors: [default, bright_white, bold red, bold red]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: (\d+):\s(\S+):.+state (UNKNOWN)
+    name: State UNKNOWN
+    colors: [default, bright_white, bold cyan, cyan]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: (\d+):\s(\S+):.+state (DORMANT)
+    name: State DORMANT
+    colors: [default, bright_white, bold cyan, cyan]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: \s<([^>]+)>
+    name: < >
+    colors: [default, cyan]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: NO-CARRIER
+    name: NO-CARRIER
+    colors: [bold red]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: \smaster\s(\S+)\s
+    name: Master dev
+    colors: [default, on_blue white]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: \son\s
+    name: 'True'
+    colors: [green]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: \soff\s
+    colors: [dark red]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: link\/(none)
+    name: link/none
+    colors: [unchanged, red]
+    when: [ip addr, ip address, ip link, ip a, ip l]
+
+  - pattern: dev\s(\S+)
+    name: DEV
+    colors: [default, cyan]
+    when: [ip route, ip r]
+
+  - pattern: (via)\s(\S+)\s
+    name: Gateway
+    colors: [default, yellow, bold yellow]
+    when: [ip route, ip r]
+
+  - pattern: ^(default|[^ \/]+(\/(\d+))?)
+    name: Network
+    colors: [green, bright_green, default, green]
+    when: [ip route, ip r]
+
+  - pattern: ^default
+    name: Network DEFAULT
+    colors: [on_green bold white]
+    when: [ip route, ip r]
+
+  - pattern: (src)\s(\S+)\s?
+    name: Local
+    colors: [default, magenta, bold magenta]
+    when: [ip route, ip r]
+
+  - pattern: (proto)\s(\S+)\s
+    name: proto
+    colors: [default, default, dark yellow]
+    when: [ip route, ip r]
+
+  - pattern: (metric)\s(\d+)\b
+    name: metric
+    colors: [default, default, bold white]
+    when: [ip route, ip r]
+
+  - pattern: linkdown
+    name: linkdown
+    colors: [bold red]
+    when: [ip route, ip r]
+
+  - pattern: ^(\S+)\s.*(STALE)$
+    name: STATUS - STALE
+    colors: [default, bright_red, bold red]
+    when: [ip neighbor, ip neigh, ip n]
+
+  - pattern: ^(\S+)\s.*(FAILED)$
+    name: STATUS - FAILED
+    colors: [default, bright_magenta, bold magenta]
+    when: [ip neighbor, ip neigh, ip n]
+
+  - pattern: ^(\S+)\s.*(REACHABLE)$
+    name: Status - REACHABLE
+    colors: [default, bright_green, green]
+    when: [ip neighbor, ip neigh, ip n]
+
+  - pattern: ^(\S+)\s.*(DELAY)$
+    name: Status - DELAY
+    colors: [default, bright_yellow, yellow]
+    when: [ip neighbor, ip neigh, ip n]
+
+  - pattern: dev\s(\S+)
+    name: DEV
+    colors: [default, cyan]
+    when: [ip neighbor, ip neigh, ip n]
+
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: IP4
+    colors: [bold yellow]
+    when: [ip]
+
+  - pattern: '[0-9a-fA-F]{0,4}(\:\:?[0-9a-fA-F]{0,4})+?(\/\d{1,3})'
+    name: IP6
+    colors: [yellow]
+    when: [ip]
+
+  - pattern: (\d|[a-f]){2}(\:(\d|[a-f]){2}){5}
+    name: MAC
+    colors: [magenta]
+    when: [ip]
+
+  - pattern: \(|\)
+    name: parenthesis
+    colors: [yellow]
+    when: [ip]
+
+  - pattern: dev \w+
+    name: dev wlan0 etc
+    colors: [yellow]
+    when: [ip]
+
+  - pattern: default
+    name: '"default"'
+    colors: [on_blue]
+    when: [ip]
+
+  - pattern: /\d{1,2}
+    name: ip range size
+    colors: [red]
+    when: [ip]
+
+  - pattern: linkdown
+    name: '"linkdown"'
+    colors: [bold red]
+    when: [ip]
+
+  - pattern: src \S+
+    name: '"src"'
+    colors: [on_magenta]
+    when: [ip]

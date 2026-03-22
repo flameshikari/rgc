@@ -1,0 +1,31 @@
+command:
+  - findmnt
+
+rules:
+  - pattern: \s\/dev(?:\/([^\/ ]+))+
+    name: Devices
+    colors: [green, bold green]
+
+  - pattern: (?<=─|-)(?:\/([^\/ ]+))+
+    name: Mount Path
+    colors: [unchanged, bold yellow]
+
+  - pattern: (?:\s)rw
+    name: RW
+    colors: [bold red]
+
+  - pattern: (?:\s)ro
+    name: RO
+    colors: [bold green]
+
+  - pattern: ^.*(?=cgroup|tmpfs).*$
+    name: Like comment, leave at end always
+    colors: [bright_black]
+
+  - pattern: \b(ext\d|xfs|btrfs|nfs)\b
+    name: Common Types
+    colors: [cyan]
+
+  - pattern: \b(fat|vfat|ntfs|msdos)\b
+    name: MS Types
+    colors: [on_cyan white]

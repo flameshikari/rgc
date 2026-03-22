@@ -1,0 +1,31 @@
+command:
+  - sensors
+
+rules:
+  - pattern: ([a-z\-0-9]+)
+    name: Sensor name
+    colors: [underline yellow]
+
+  - pattern: (.+:)\s+(.+)
+    name: Data names
+    colors: [unchanged, bright_cyan, default]
+
+  - pattern: .+\s+(\(.+\))
+    name: Extra info
+    colors: [unchanged, bright_black]
+
+  - pattern: Adapter:(\s.*)
+    name: Adapter name
+    colors: [unchanged, yellow]
+
+  - pattern: .+:\s+(\+[2345][0-9]\.[0-9]°C)
+    name: Low temperature (below 60)
+    colors: [unchanged, green]
+
+  - pattern: .+:\s+(\+[67][0-9]\.[0-9]°C)
+    name: High temperature (above 60)
+    colors: [unchanged, bright_yellow]
+
+  - pattern: .+:\s+(\+[89][0-9]\.[0-9]°C)
+    name: Very high temperature (above 80)
+    colors: [unchanged, bright_red]

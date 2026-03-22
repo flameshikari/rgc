@@ -1,0 +1,10 @@
+command:
+  - lolcat
+
+rules:
+  - pattern: ([^\w\d]+)
+    name: Message
+    colors: [unchanged]
+
+  - pattern: ([a-zA-Z0-9]+)
+    colors: [default, green, yellow, red]

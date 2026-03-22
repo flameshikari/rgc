@@ -1,0 +1,13 @@
+command:
+  - jobs
+
+rules:
+  - pattern: \[(\d+)\](.) +(\d+)?\s?
+    name: BASH
+    colors: [unchanged, cyan, yellow, magenta]
+
+  - pattern: Running.*
+    colors: [bold green]
+
+  - pattern: Stopped.*
+    colors: [red]

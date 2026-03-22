@@ -1,0 +1,70 @@
+command:
+  - ping
+  - ping6
+  - oping
+  - nping
+  - hping
+  - arpping
+  - l2ping
+  - ioping
+
+rules:
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: IP
+    colors: [bright_blue]
+
+  - pattern: (([0-9a-fA-F]{1,4})?\:\:?[0-9a-fA-F]{1,4})+
+    name: ipv6 number
+    colors: [magenta]
+
+  - pattern: icmp_seq=(\d+)
+    name: icmp_seq=##
+    colors: [default, yellow]
+
+  - pattern: ttl=(\d+)
+    name: ttl=#
+    colors: [default, magenta]
+
+  - pattern: (?:[fF]rom|PING)\s(\S+)\s
+    name: name
+    colors: [default, blue]
+
+  - pattern: ([0-9\.]+)\s?ms
+    name: time
+    colors: [green, bold green]
+
+  - pattern: DUP\!
+    name: DUP
+    colors: [red]
+
+  - pattern: ' 0(\.0)?% packet loss'
+    name: OK
+    colors: [green]
+
+  - pattern: (Destination Host Unreachable|100(\.0)?% packet loss)
+    name: Errors
+    colors: [red]
+
+  - pattern: .+unknown\shost\s(.+)
+    name: unknown host
+    colors: [red, bold red]
+
+  - pattern: '--- (\S+) ping statistics ---'
+    name: statistics header
+    colors: [bold, bold blue]
+
+  - pattern: rtt (min)/(avg)/(max)/(mdev)
+    name: last line min/avg/max/mdev
+    colors: [default, bright_yellow, bright_blue, bright_red, bright_magenta]
+
+  - pattern: \=\s([0-9\.]+)\/([0-9\.]+)\/([0-9\.]+)\/([0-9\.]+)
+    name: last line values
+    colors: [default, bright_yellow, bright_blue, bright_red, bright_magenta]
+
+  - pattern: SENT|RCVD
+    name: these are good for nping
+    colors: [red]
+
+  - pattern: unreachable
+    name: nping
+    colors: [red]

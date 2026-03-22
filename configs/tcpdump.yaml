@@ -1,0 +1,19 @@
+command:
+  - tcpdump
+
+rules:
+  - pattern: on ([^,]+), link-type (\S+)
+    name: Title
+    colors: [unchanged, bold green, green]
+
+  - pattern: '^(\d+):(\d+):(\d+\.\d+) (\S+) (\S+) (>) (\S+):'
+    name: Basic Line (-nS)
+    colors: [unchanged, bold white, bright_white, dark white, cyan, bright_green, bold red, bright_blue]
+
+  - pattern: (?:\d{1,3}\.){3}(?:\d{1,3})
+    name: IP
+    colors: [bold]
+
+  - pattern: ^(\d+) packets
+    name: Summary
+    colors: [unchanged, bold green]

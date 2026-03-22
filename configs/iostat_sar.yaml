@@ -1,0 +1,28 @@
+command:
+  - iostat
+  - sar
+
+rules:
+  - pattern: ^[\w\d-]+\s{2,}(?!%)
+    name: Devices
+    colors: [bright_green]
+
+  - pattern: \s+(%user)\s+(%nice)\s+(%system)\s+(%iowait)\s+(%steal)\s+(%idle)
+    name: Averages Title
+    colors: [default, blue, cyan, magenta, bright_magenta, red, green]
+
+  - pattern: \s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)
+    name: Averages Numbers
+    colors: [default, blue, cyan, magenta, bright_magenta, red, green]
+
+  - pattern: ^Average:.*$
+    name: Averages last line
+    colors: [reverse]
+
+  - pattern: \s\d{4}\.\d+
+    name: High rates (4 digits)
+    colors: [red]
+
+  - pattern: \s\d{5,}\.\d+
+    name: High rates (5+ digits)
+    colors: [bold red]

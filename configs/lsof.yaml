@@ -1,0 +1,19 @@
+command:
+  - lsof
+
+rules:
+  - pattern: \s(\d+),(\d+)\s
+    name: device major minor numbers
+    colors: [unchanged, bright_yellow, yellow]
+
+  - pattern: \broot\b
+    name: root
+    colors: [bold white on_red]
+
+  - pattern: ^(\S+)\s+(\d+)\s
+    name: PID
+    colors: [unchanged, bold cyan, cyan]
+
+  - pattern: \s\/.*\/(\S+)($| \(.*\))
+    name: PATH
+    colors: [green, bright_green, red]

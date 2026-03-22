@@ -1,0 +1,55 @@
+command:
+  - gcc
+  - g++
+  - cc
+  - c++
+  - make
+  - gmake
+
+rules:
+  - pattern: \b(g?cc|[gc]\+\+|g?as|ld)\b
+    colors: [white bold]
+    count: once
+
+  - pattern: '^[^:\s]*?:\d+:'
+    colors: [bold magenta]
+
+  - pattern: '^[^:\s]*?:'
+    colors: [cyan]
+    count: once
+
+  - pattern: \`[A-Za-z0-9_():&*]+( const)?\'
+    colors: [magenta]
+
+  - pattern: \s\-(O\d?|f\S+|pthread|g\S*|c|W\S,\S+)\b
+    name: compilation method modifiers
+    colors: [yellow]
+
+  - pattern: \-O\d
+    name: '-O'
+    colors: [green]
+
+  - pattern: \-o\s[^\s]+
+    name: '-o'
+    colors: [yellow]
+
+  - pattern: '[Ww]arning[:\b]'
+    name: warning
+    colors: [white]
+
+  - pattern: 'warning:'
+    colors: [bold yellow]
+    count: once
+
+  - pattern: '[Ee]rror[:\b]'
+    name: error
+    colors: [bold white]
+
+  - pattern: 'error:'
+    colors: [bold white on_red]
+    count: once
+
+  - pattern: 'note:'
+    name: note
+    colors: [bold cyan]
+    count: once

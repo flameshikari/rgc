@@ -1,0 +1,37 @@
+
+rules:
+  - pattern: (?i)\b\w+(?=(o|oj|on|ojn)\b)
+    name: substantivoj
+    colors: [green]
+
+  - pattern: (?i)o(|j|n|jn)\b
+    name: sufiksoj de substantivoj
+    colors: [yellow]
+
+  - pattern: \b\w+(?=(?i)i|as|is|os|u)\b
+    name: verboj
+    colors: [magenta]
+
+  - pattern: (?i)(i|as|is|os|u)\b
+    name: sufiksoj de verboj
+    colors: [yellow]
+
+  - pattern: (?i)\b\w+(?=e\b)
+    name: adverboj
+    colors: [bold magenta]
+
+  - pattern: (?i)(e|aux)\b
+    name: sufiksoj de adverboj
+    colors: [yellow]
+
+  - pattern: (?i)\b\w+(?=(a|aj|an|ajn)\b)
+    name: adjektivoj
+    colors: [blue]
+
+  - pattern: (?i)a(j|n|jn)\b
+    name: sufiksoj de adjektivoj
+    colors: [yellow]
+
+  - pattern: (?i)\b(de|en|kun|sen|la|pli|plej|plu)\b
+    name: kelkaj kurtaj vortoj
+    colors: [bold yellow]

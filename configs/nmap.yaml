@@ -1,0 +1,39 @@
+command:
+  - nmap
+
+rules:
+  - pattern: Nmap scan report for (\S+)\s\(([^\)]+)\)
+    name: Scan Title
+    colors: [default, bold green, bold magenta]
+
+  - pattern: Host is (up)
+    name: up
+    colors: [default, bold green]
+
+  - pattern: Failed\sto\sresolve\s\"(\S+)\"
+    name: Failed to resolve
+    colors: [red, bold red]
+
+  - pattern: 'Not shown: (\d+)\s(closed|filtered)\sports'
+    name: Closed ports
+    colors: [default, bright_red, red]
+
+  - pattern: ^PORT.*$|^HOP.*
+    name: Titles
+    colors: [bold]
+
+  - pattern: ^(\d+)\/(\w+)\s+(\w+)\s+(\S+)
+    name: Ports
+    colors: [default, bold green, magenta, cyan, bold yellow]
+
+  - pattern: ^\|_?(.*)
+    name: Ports Details
+    colors: [bold green, default]
+
+  - pattern: ^\d+\s+(\d+\.\d+\sms)[^0-9]*(\d+\.\d+\.\d+\.\d+)
+    name: Trace
+    colors: [default, green, magenta]
+
+  - pattern: Network Distance:\s(\d+)
+    name: 'Network Distance:'
+    colors: [default, bold green]

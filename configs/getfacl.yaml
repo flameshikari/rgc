@@ -1,0 +1,35 @@
+command:
+  - getfacl
+
+rules:
+  - pattern: ^\#\sfile:\s(\S+)
+    name: Header file
+    colors: [cyan, bold]
+
+  - pattern: ^\#\sowner:\s(\S+)
+    name: Header owner
+    colors: [cyan, bold green]
+
+  - pattern: ^\#\sgroup:\s(\S+)
+    name: Header group
+    colors: [cyan, bold yellow]
+
+  - pattern: (?:^|:)user:([^:]+)?:(\S+)
+    name: user
+    colors: [green, on_green black, bright_green]
+
+  - pattern: (?:^|:)group:([^:]+)?:(\S+)
+    name: group
+    colors: [yellow, on_yellow black, bright_yellow]
+
+  - pattern: (?:^|:)other:([^:]+)?:(\S+)
+    name: other
+    colors: [red, on_red black, bright_red]
+
+  - pattern: (?:^|:)mask:([^:]+)?:(\S+)
+    name: mask
+    colors: [blue, on_blue black, bright_blue]
+
+  - pattern: ^default
+    name: 'default:'
+    colors: [on_blue bold white]

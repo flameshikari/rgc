@@ -1,0 +1,27 @@
+command:
+  - lsattr
+
+rules:
+  - pattern: '[aAcCdDeijsStTu]'
+    name: Normal
+    colors: [cyan]
+
+  - pattern: '[iadA]'
+    name: User Namespace
+    colors: [bright_green]
+
+  - pattern: '[EhINXZ]'
+    name: Read Only
+    colors: [bold red]
+
+  - pattern: '[\-]'
+    name: Separators
+    colors: [dark]
+
+  - pattern: (lsattr:) \w.*
+    name: Error
+    colors: [default, bold red]
+
+  - pattern: (\/[-\w\d. ]+)+$
+    name: Filename
+    colors: [yellow, bold]

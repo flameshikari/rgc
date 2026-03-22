@@ -1,0 +1,27 @@
+command:
+  - mount
+
+rules:
+  - pattern: ^(.*) on (.*) type (.*) \((.*)\)
+    name: written by Emanuele Aina
+    colors: [default, green, yellow, blue, magenta]
+
+  - pattern: ^(\/[^\/ ]+)+
+    name: Devices
+    colors: [bold green, on_green black]
+
+  - pattern: (?<=on )(\/[^\/ ]+)+
+    name: Mount Path
+    colors: [unchanged, underline yellow]
+
+  - pattern: (?<=\()rw
+    name: RW
+    colors: [bold red]
+
+  - pattern: (?<=\()ro
+    name: RO
+    colors: [bold green]
+
+  - pattern: ^(cgroup|tmpfs).*
+    name: Like comment, leave at end always
+    colors: [bright_black]

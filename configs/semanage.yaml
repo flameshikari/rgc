@@ -1,0 +1,77 @@
+command:
+  - semanage boolean
+  - semanage fcontext
+  - semanage user
+  - semanage login
+  - semanage port
+
+rules:
+  - pattern: ^\S+
+    name: Name
+    colors: [white]
+    when: [semanage boolean]
+
+  - pattern: \s\((off)
+    name: State
+    colors: [default, bright_red]
+    when: [semanage boolean]
+
+  - pattern: \s\((on)
+    name: State
+    colors: [default, bright_green]
+    when: [semanage boolean]
+
+  - pattern: \,\s+(off)\)
+    name: State
+    colors: [default, dark red]
+    when: [semanage boolean]
+
+  - pattern: \,\s+(on)\)
+    name: State
+    colors: [default, dark green]
+    when: [semanage boolean]
+
+  - pattern: '(\w+_u):(\w+_r):(\w+_t):(\w\d)'
+    name: SELinux
+    colors: [default, green, yellow, cyan, magenta]
+    when: [semanage fcontext]
+
+  - pattern: \/\S+(\/\S+)\(
+    name: Path
+    colors: [green, bright_green]
+    when: [semanage fcontext]
+
+  - pattern: \.\*|\[\^\/\]\*|\(\/\.\*\)\?|\?|\\\.
+    name: Almost universal regex
+    colors: [blue]
+    when: [semanage fcontext]
+
+  - pattern: \S+_r
+    name: r
+    colors: [yellow]
+    when: [semanage user, semanage login, semanage port]
+
+  - pattern: \S+_u
+    name: u
+    colors: [green]
+    when: [semanage user, semanage login, semanage port]
+
+  - pattern: \S+_t
+    name: t
+    colors: [cyan]
+    when: [semanage user, semanage login, semanage port]
+
+  - pattern: s\d+
+    name: s
+    colors: [magenta]
+    when: [semanage user, semanage login, semanage port]
+
+  - pattern: tcp
+    name: tcp for ports
+    colors: [blue]
+    when: [semanage user, semanage login, semanage port]
+
+  - pattern: udp
+    name: udp for ports
+    colors: [yellow]
+    when: [semanage user, semanage login, semanage port]

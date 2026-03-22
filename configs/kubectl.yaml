@@ -1,0 +1,79 @@
+command:
+  - kubectl
+
+rules:
+  - pattern: \b(Ready|Running|[Tt]rue|Active|Available|Approved|created)\b
+    name: Green Words
+    colors: [unchanged, green]
+
+  - pattern: \smaster\s
+    name: Master
+    colors: [on_green bold white]
+
+  - pattern: \b([Dd]isabled?|[Ee]rrors?|[Ss]topped|[Ff]alse|none|ErrImagePull|[a-zA-Z]+BackOff|OOMKilled|[Tt]erminated|[Ff]aile?d?)\b
+    name: Red Words
+    colors: [unchanged, red]
+
+  - pattern: \b([Ww]arning|[Pp]ending|[Ww]aiting|ContainerCreating|Released|Bound|already exists)\b
+    name: Yellow Words
+    colors: [unchanged, yellow]
+
+  - pattern: \b(Completed)\b
+    name: Completed Jobs
+    colors: [unchanged, dark green]
+
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(/\d{1,2})?
+    name: Misc IP
+    colors: [cyan, magenta]
+
+  - pattern: (\d+)(:\d+)?/(TCP|UDP)
+    name: Ports
+    colors: [unchanged, yellow, bold green, magenta]
+
+  - pattern: ^([^/ ]+)/(\S+)
+    name: Type/Name
+    colors: [unchanged, yellow, bright_white]
+
+  - pattern: \s(0/[1-9]+)\b
+    name: No running Instances
+    colors: [unchanged, bold red]
+
+  - pattern: ([\w\d\-_\/.]+)=([\w\d\-_./]+)(,| |$)
+    name: Labels
+    colors: [unchanged, blue, bright_yellow]
+
+  - pattern: '^([\w\d \-]+):'
+    name: YAML First level (PSEUDO)
+    colors: [unchanged, bright_blue]
+
+  - pattern: '^[ \-]+(\S+):'
+    name: YAML Nested
+    colors: [unchanged, blue]
+
+  - pattern: ': (\d+)$'
+    name: YAML number
+    colors: [unchanged, yellow]
+
+  - pattern: '"(\S*)(?=")'
+    name: Explicit String
+    colors: [default, cyan]
+
+  - pattern: (\<?[Nn]one\>?|null)
+    name: Empy
+    colors: [magenta]
+
+  - pattern: \s+(Type)\s+(Reason)\s+(Age)\s+(From)\s+(Message)
+    name: Events title
+    colors: [cyan, cyan, cyan, cyan, cyan, magenta]
+
+  - pattern: \s+\-{3,}
+    name: Title separator
+    colors: [dark white]
+
+  - pattern: ( --[^= ]+| -[a-zA-Z]( |,))
+    name: HELP Highlight
+    colors: [bright_green]
+
+  - pattern: ^\*.+$
+    name: Higlight (Tested in kubectl config get-contexts)
+    colors: [bold white]

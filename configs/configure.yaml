@@ -1,0 +1,31 @@
+command:
+  - configure
+
+rules:
+  - pattern: \b(loading|updating|creating) cache\b
+    name: cache functions
+    colors: [yellow bold]
+
+  - pattern: \bchecking\s*(for|if|whether|command|how|that)?(\s*to)?\b
+    name: checking
+    colors: [bold blue]
+
+  - pattern: \.\.\. .*$
+    name: result is complex
+    colors: [bold yellow]
+
+  - pattern: \.\.\.( \(cached\))? yes$
+    name: check succeeded
+    colors: [bold cyan]
+
+  - pattern: \.\.\.( \(cached\))? no$
+    name: check did not succeed
+    colors: [bold red]
+
+  - pattern: \.\.\.
+    name: ... should be normal
+    colors: [default]
+
+  - pattern: \bcreating\b
+    name: creating stuff
+    colors: [green]

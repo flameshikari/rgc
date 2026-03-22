@@ -1,0 +1,15 @@
+command:
+  - dnf
+
+rules:
+  - pattern: '^Installing:'
+    name: Install
+    colors: [bold green]
+
+  - pattern: '^Upgrading:'
+    name: Main
+    colors: [bold yellow]
+
+  - pattern: '^Removing:'
+    name: Main
+    colors: [bold red]

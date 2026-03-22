@@ -1,0 +1,39 @@
+command:
+  - ant
+
+rules:
+  - pattern: BUILD FAILED
+    name: BUILD FAILED
+    colors: [bold red]
+
+  - pattern: ^BUILD SUCCESSFUL
+    name: BUILD SUCCESSFUL
+    colors: [bold green]
+
+  - pattern: '^(Total time: )([\d]+.*)$'
+    name: Total time
+    colors: [yellow, bold magenta]
+
+  - pattern: '[\d]+ error[s]?'
+    name: some error
+    colors: [red]
+
+  - pattern: '[\d]+ warning[s]?'
+    name: some warning
+    colors: [yellow]
+
+  - pattern: '[Ee]rror:'
+    name: some error
+    colors: [red]
+
+  - pattern: '[Ww]arning:'
+    name: some warning
+    colors: [yellow]
+
+  - pattern: ^[^:\s]+:$
+    name: project name
+    colors: [green]
+
+  - pattern: '[^/]+\.[ewrj]ar$'
+    name: products
+    colors: [blue]

@@ -1,0 +1,39 @@
+command:
+  - lspci
+
+rules:
+  - pattern: ^(..):(..).(.)
+    name: Address
+    colors: [default, bright_green, bright_yellow, red]
+
+  - pattern: '(Ethernet|Network) controller:'
+    name: Ethernet
+    colors: [cyan]
+
+  - pattern: Wireless
+    name: Wireless
+    colors: [bright_cyan]
+
+  - pattern: 'SATA controller:'
+    name: SATA
+    colors: [green]
+
+  - pattern: 'Audio device:'
+    name: Audio
+    colors: [blue]
+
+  - pattern: 'VGA compatible controller:'
+    name: Video
+    colors: [magenta]
+
+  - pattern: '(PCI|ISA|Host) bridge:'
+    name: Bridges
+    colors: [red]
+
+  - pattern: '([A-Z].+?) controller:'
+    name: any unspecified controller
+    colors: [blue]
+
+  - pattern: 'Kernel (?:modules|driver in use): (.+)'
+    name: For lspci -k
+    colors: [default, bright_red]

@@ -1,0 +1,7 @@
+command:
+  - lsmod
+
+rules:
+  - pattern: (\S+)\s+(\d+)\s+(\d+)
+    name: Main
+    colors: [default, bright_green, cyan, yellow]

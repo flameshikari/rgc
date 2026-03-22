@@ -1,0 +1,63 @@
+command:
+  - lsblk
+
+rules:
+  - pattern: ^[a-z]+\d?\s
+    name: Main HD
+    colors: [bold white]
+
+  - pattern: ([├└─│]+|[\|\`\-]+)(\S+)
+    name: Partition
+    colors: [bright_green]
+
+  - pattern: \s+([├└─│]+|[\|\`\-]+)(\S+)
+    name: Partition - LVM
+    colors: [default, default, bright_cyan]
+
+  - pattern: (?<=\s)crypt\b
+    name: Type crypt
+    colors: [on_magenta white]
+
+  - pattern: (?<=\s)disk\b
+    name: Type disk
+    colors: [magenta]
+
+  - pattern: (?<=\s)lvm\b
+    name: Type lvm
+    colors: [bold cyan]
+
+  - pattern: (?<=\s)part\b
+    name: Type part
+    colors: [cyan]
+
+  - pattern: (?<=\s)loop\b
+    name: Type loop
+    colors: [bright_red]
+
+  - pattern: \s\d*[.,]?\dKi?\s
+    name: Size 'K'
+    colors: [green]
+
+  - pattern: \s\d*[.,]?\dMi?\s
+    name: Size 'M'
+    colors: [yellow]
+
+  - pattern: \s\d*[.,]?\dGi?\s
+    name: Size 'G'
+    colors: [red]
+
+  - pattern: \s\d*[.,]?\dTi?\s
+    name: Size 'T'
+    colors: [bold red]
+
+  - pattern: (?<=\s)(\/[^\/ ]*)+$
+    name: Mount Path
+    colors: [yellow, bold yellow]
+
+  - pattern: \s\[(SWAP)\]
+    name: Mount [SWAP]
+    colors: [default, bright_magenta]
+
+  - pattern: (?<=\s)\b([0-9a-fA-F-]{4,}|[\w-]{38})\b
+    name: UUID
+    colors: [default, dark cyan]

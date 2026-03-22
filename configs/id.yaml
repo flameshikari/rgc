@@ -1,0 +1,15 @@
+command:
+  - id
+
+rules:
+  - pattern: (\d+)\((\w+)\)
+    name: Groups
+    colors: [unchanged, yellow, bold yellow]
+
+  - pattern: uid.(\d+)\((\w+)\)
+    name: User
+    colors: [unchanged, green, bold green]
+
+  - pattern: (\w+_u):(\w+_r):(\w+_t):([\w\-.:]+)
+    name: SELinux
+    colors: [unchanged, green, yellow, cyan, magenta]

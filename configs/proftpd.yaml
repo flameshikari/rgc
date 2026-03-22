@@ -1,0 +1,25 @@
+
+rules:
+  - pattern: \[.+?\]
+    name: everything in brakets
+    colors: [cyan]
+
+  - pattern: \".+?\"
+    name: everything in ""
+    colors: [green]
+
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: ip number
+    colors: [bold magenta]
+
+  - pattern: STOR
+    name: STOR
+    colors: [bold red on_white]
+
+  - pattern: RETR
+    name: RETR
+    colors: [black on_white]
+
+  - pattern: ^([\w\.]+?\s)([\w\.]+?\s)([\w\.]+?\s)
+    name: first tree fields separated by space
+    colors: [bold blue, bold yellow, bold magenta]

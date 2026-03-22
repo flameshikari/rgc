@@ -1,0 +1,7 @@
+command:
+  - tune2fs
+
+rules:
+  - pattern: ^([^:]+):(.+)$
+    name: Values
+    colors: [default, cyan]

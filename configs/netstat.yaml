@@ -1,0 +1,80 @@
+command:
+  - netstat
+
+rules:
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: ip number
+    colors: [magenta]
+
+  - pattern: ([\w\.\-]+):([\w\-]+)\b
+    name: hostname:service
+    colors: [yellow, bold green, bold yellow]
+
+  - pattern: ([\w\.\-]+):(\d+)\b
+    name: hostname:port
+    colors: [yellow, bold green, bold red]
+
+  - pattern: (\*):([\w\-]+)\b
+    name: '*:service'
+    colors: [yellow, blue, bold yellow]
+
+  - pattern: ^IPX.*[\dABCDEF]+:[\dABCDEF]+
+    name: ipx hostname
+    colors: [green]
+
+  - pattern: (^tcp6?|^udp6?|^unix|^IPX|STREAM|DGRAM)
+    name: protocols
+    colors: [bold blue]
+
+  - pattern: FIN_WAIT.*
+    name: status
+    colors: [red]
+
+  - pattern: SYN.*?
+    name: status
+    colors: [bold red]
+
+  - pattern: LISTEN(ING)?
+    name: status
+    colors: [bold blue]
+
+  - pattern: TIME_WAIT
+    name: status
+    colors: [bold red]
+
+  - pattern: CLOS(E(_WAIT)?|ING)
+    name: status
+    colors: [red]
+    skip: true
+
+  - pattern: LAST_ACK
+    name: status
+    colors: [red]
+
+  - pattern: ESTAB.*?\b|CONNECTED
+    name: status
+    colors: [bold yellow]
+
+  - pattern: FREE
+    name: status
+    colors: [bold green]
+
+  - pattern: DISCONNECTING
+    name: status
+    colors: [red]
+
+  - pattern: CONNECTING
+    name: status
+    colors: [green]
+
+  - pattern: UNKNOWN
+    name: status
+    colors: [blink bold red]
+
+  - pattern: \[.*\]
+    name: status
+    colors: [green]
+
+  - pattern: (\@)[\dabcdef]+
+    name: path
+    colors: [green, bold green]

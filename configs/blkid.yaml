@@ -1,0 +1,31 @@
+command:
+  - blkid
+
+rules:
+  - pattern: ^(/dev/)(.+):\s
+    name: Blk
+    colors: [default, green, bright_green]
+
+  - pattern: ^/dev/(mapper/)(.+):\s
+    name: Blk mapper
+    colors: [unchanged, underline green, bright_green]
+
+  - pattern: \sUUID="([^"]+)
+    name: UUID
+    colors: [bold yellow, blue]
+
+  - pattern: \sUUID_SUB="([^"]+)
+    name: UUID_SUB
+    colors: [green, bright_green]
+
+  - pattern: TYPE="([^"]+)
+    name: TYPE
+    colors: [bold cyan, cyan]
+
+  - pattern: \sLABEL="([^"]+)
+    name: LABEL
+    colors: [bold bright_cyan, bright_cyan]
+
+  - pattern: PARTUUID="([^"]+)
+    name: PARTUUID
+    colors: [green, magenta]

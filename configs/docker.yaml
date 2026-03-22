@@ -1,0 +1,348 @@
+command:
+  - docker ps
+  - docker-compose ps
+  - docker images
+  - docker image ls
+  - docker image list
+  - docker search
+  - docker pull
+  - docker info
+  - docker version
+  - docker network ls
+  - docker-machine ls
+
+rules:
+  - pattern: (?:\s|^)(CONTAINER ID|IMAGE|COMMAND|CREATED|STATUS|PORTS|NAMES)(?:\s|$)
+    name: HEADERS
+    colors: [default, underline]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: \s{2,}(?:([a-z\-_0-9]+)\/)*([a-z\-_0-9]+)(:\S+)?\s{2,}\"
+    name: IMAGE NAME (as docker image)
+    colors: [unchanged, yellow, bright_white, cyan]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: ^(?!CONTAINER)(\w+)\s+([^\s]+)\s+(".*")\s+(.*(?=(?:Up|Exited|Created|Restarting)))
+    name: IMAGE
+    colors: [unchanged, bright_black, unchanged, bright_black, cyan]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: \sCreated\s
+    name: Statuses - Created
+    colors: [blue]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: (?:\s{2}|^)(?:Up|Restarting)(?:(?:\s[\w,\d]+)+)?
+    name: Up
+    colors: [bold green]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: \s\(healthy\)
+    name: Health - healthy
+    colors: [bold green]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: '\s\(health: starting\)'
+    name: Health -  starting
+    colors: [bold yellow]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: \s\(unhealthy\)
+    name: Health - unhealthy
+    colors: [bold red]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: Exited\s.(\d+).+?(?=\s{2,})
+    name: Statuses - Exited
+    colors: [bold red, red]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: Restarting\s.(\d+).+?(?=\s{2,})
+    name: Statuses - Restarting
+    colors: [bold blue]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(\:)?
+    name: Ip Addresses
+    colors: [default, blue, default]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: (\d{1,5})?(-)?(\d{1,5})?(->)?(\d{1,5})(-)?(\d{1,5})?(\/)(tcp|udp)
+    name: Ports
+    colors: [default, bright_green, default, bright_green, default, bright_green, default, bright_green, default, cyan]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: (?:([a-z\-_0-9]+)\/)*([a-z\-_0-9]+)$
+    name: NAMES
+    colors: [default, yellow, on_blue white]
+    when: [docker ps, docker-compose ps]
+
+  - pattern: ^([a-z]+\/?[^\s]+)\s+([^\s]+)\s+(\w+)
+    name: REPO, TAG, IMAGE ID
+    colors: [default, bold white, bright_cyan, bright_black]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?<=\s)latest(?=\s+)
+    name: latest
+    colors: [dark cyan]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: ^(?:(\S+)\/)*(\S+)\s
+    name: REPOSITORY (Image name)
+    colors: [default, yellow, bright_white]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: ^<none>.*$
+    name: images without name
+    colors: [bold red]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(<none>)\s+
+    name: images without tag
+    colors: [unchanged, bold red]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?<=\s)\d+[.,]?\d*\s?(KB?|B)
+    name: Size 'K'
+    colors: [green]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?<=\s)\d{1,2}[.,]?\d*\s?MB?
+    name: Size 'M', 2 digits
+    colors: [green]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?<=\s)\d{3,4}[.,]?\d*\s?MB?
+    name: Size 'M' 3+ digits
+    colors: [yellow]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?<=\s)\d+[.,]?\d*\s?GB?
+    name: Size 'G'
+    colors: [red]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: '[\da-f]{12}\s+((?:About a|\d+) (?:seconds?|minutes?) ago)'
+    name: CREATED seconds/minutes
+    colors: [unchanged, on_green bold white]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(About a minute ago)\s\w+
+    name: CREATED About a minute ago
+    colors: [unchanged, on_green bold white]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(\d+\shours\s\w+)
+    name: CREATED hours
+    colors: [unchanged, bright_green]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(\d+\sdays\s\w+)
+    name: CREATED days
+    colors: [unchanged, green]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(\d+\sweeks\s\w+)
+    name: CREATED weeks
+    colors: [unchanged, yellow]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: \s+(\d+\smonths\s\w+)
+    name: CREATED months
+    colors: [unchanged, red]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: (?:\s|^)(REPOSITORY|TAG|IMAGE ID|CREATED|SIZE)(?:\s|$)
+    name: HEADERS
+    colors: [default, underline]
+    when: [docker images, docker image ls, docker image list]
+
+  - pattern: ^(?:([a-z\-_0-9]+)\/)*(\S+)\s(?!DESCRIPTION)
+    name: NAMES
+    colors: [default, yellow, bold yellow]
+    when: [docker search]
+
+  - pattern: ^NAME.*
+    name: Title
+    colors: [default]
+    when: [docker search]
+
+  - pattern: \[OK\](?!$)
+    name: Oficial
+    colors: [bold green]
+    when: [docker search]
+
+  - pattern: \[OK\]$
+    name: Automated
+    colors: [magenta]
+    when: [docker search]
+
+  - pattern: \s{3,}(\d)\s{3,}
+    name: 1 digit Star
+    colors: [red]
+    when: [docker search]
+
+  - pattern: \s{3,}(\d{2})\s{3,}
+    name: 2 digits Stars
+    colors: [yellow]
+    when: [docker search]
+
+  - pattern: \s{3,}(\d{3,})\s{3,}
+    name: 3 digits Stars
+    colors: [green]
+    when: [docker search]
+
+  - pattern: 'Using default tag: (\w+)'
+    name: Header
+    colors: [default, bold yellow]
+    when: [docker pull]
+
+  - pattern: Pulling from ([^\s]+)
+    name: Image
+    colors: [default, bold green]
+    when: [docker pull]
+
+  - pattern: '^\w{12}:'
+    name: HASH
+    colors: [default]
+    when: [docker pull]
+
+  - pattern: Pulling fs layer
+    name: 1_Pulling fs layer
+    colors: [yellow]
+    when: [docker pull]
+
+  - pattern: Waiting
+    name: 2_Waiting
+    colors: [bright_yellow]
+    when: [docker pull]
+
+  - pattern: Verifying Checksum
+    name: 3_Verifying Checksum
+    colors: [bold yellow]
+    when: [docker pull]
+
+  - pattern: Download complete
+    name: 4_Download complete
+    colors: [green]
+    when: [docker pull]
+
+  - pattern: Pull complete
+    name: 5_Pull Complete
+    colors: [bold green]
+    when: [docker pull]
+
+  - pattern: Already exists
+    name: Already exists
+    colors: [blue]
+    when: [docker pull]
+
+  - pattern: Image is up to date
+    name: Status Updated
+    colors: [bold green]
+    when: [docker pull]
+
+  - pattern: Downloaded newer image
+    name: Status Downloaded
+    colors: [bold blue]
+    when: [docker pull]
+
+  - pattern: ^(\S[^:]+):\s?(.*)?$
+    name: Main Nodes
+    colors: [default, cyan]
+    when: [docker info]
+
+  - pattern: ^\s([^:]+):\s?(.*)?$
+    name: Sub Nodes
+    colors: [default, magenta]
+    when: [docker info]
+
+  - pattern: WARNING:\s(.+)$
+    name: Warning
+    colors: [bold yellow, yellow]
+    when: [docker info]
+
+  - pattern: devicemapper$
+    name: devicemapper
+    colors: [bright_red]
+    when: [docker info]
+
+  - pattern: ': (/var/lib/docker/devicemapper/devicemapper/(?:meta)?data)'
+    name: loop-lvm
+    colors: [default, bright_red]
+    when: [docker info]
+
+  - pattern: ^\s([^:]+):(.+)$
+    name: Values
+    colors: [default, cyan]
+    when: [docker version]
+
+  - pattern: '^(Client):'
+    name: Client
+    colors: [default, bold cyan]
+    when: [docker version]
+
+  - pattern: '^(Server):'
+    name: Server
+    colors: [default, bold green]
+    when: [docker version]
+
+  - pattern: (?:\s|^)(NETWORK ID|NAME|DRIVER|SCOPE)(?:\s|$)
+    name: HEADERS
+    colors: [default, underline]
+    when: [docker network ls]
+
+  - pattern: ^(?!NETWORK)(\S+)\s+(\S+)
+    name: Line
+    colors: [unchanged, bright_black, bright_blue]
+    when: [docker network ls]
+
+  - pattern: ^\S+\s+\S+\s+(bridge)
+    name: Driver BRIDGE
+    colors: [unchanged, bright_cyan]
+    when: [docker network ls]
+
+  - pattern: ^\S+\s+\S+\s+(host)
+    name: Driver HOST
+    colors: [unchanged, cyan]
+    when: [docker network ls]
+
+  - pattern: ^\S+\s+\S+\s+(overlay)
+    name: Driver OVERLAY
+    colors: [unchanged, magenta]
+    when: [docker network ls]
+
+  - pattern: ^\S+\s+\S+\s+(null)
+    name: Driver NULL
+    colors: [unchanged, on_red white]
+    when: [docker network ls]
+
+  - pattern: ^(?!NAME|error)(\S+)\s+(\S+)\s+(\S+)
+    name: IMAGE
+    colors: [default, bold yellow, bold black, cyan]
+    when: [docker-machine ls]
+
+  - pattern: \sRunning\s
+    name: Running
+    colors: [bold green]
+    when: [docker-machine ls]
+
+  - pattern: \sStopped\s
+    name: Stopped
+    colors: [bold red]
+    when: [docker-machine ls]
+
+  - pattern: \sError\s
+    name: Error
+    colors: [red]
+    when: [docker-machine ls]
+
+  - pattern: ((?:\d{1,3}\.){3}\d{1,3}):(\d+)
+    name: PORTS
+    colors: [default, blue, bold blue]
+    when: [docker-machine ls]
+
+  - pattern: ^error\s(?:\w+\s)+([a-z\-_0-9]+):(.*)$
+    name: Error Line
+    colors: [red, yellow, bold red]
+    when: [docker-machine ls]

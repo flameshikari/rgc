@@ -1,0 +1,4 @@
+
+rules:
+  - pattern: ([a-g]+)
+    name: for testing purposes, do match but do not change anything

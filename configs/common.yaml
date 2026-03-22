@@ -1,0 +1,13 @@
+
+rules:
+  - pattern: '[Ee]nabled?|[Oo]k|[Rr]unning|[Tt]rue'
+    name: Green Words
+    colors: [green]
+
+  - pattern: '[Dd]isabled?|[Ee]rrors?|[Ss]topped|[Ff]alse'
+    name: Red Words
+    colors: [red]
+
+  - pattern: '[Ww]arning'
+    name: Yellow Words
+    colors: [yellow]

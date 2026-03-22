@@ -1,0 +1,27 @@
+command:
+  - showmount
+
+rules:
+  - pattern: ^(\/\S+)
+    name: Path
+    colors: [green]
+
+  - pattern: \/(\w+)\s
+    name: Path Last part
+    colors: [unchanged, bright_green]
+
+  - pattern: (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(\/\d+)?)
+    name: IP
+    colors: [default, yellow, magenta]
+
+  - pattern: \*
+    name: ALL
+    colors: [bold red]
+
+  - pattern: \(([\w,]+)\)
+    name: Options
+    colors: [default, cyan]
+
+  - pattern: for\s([^:]+):$
+    name: Server
+    colors: [default, bold yellow]

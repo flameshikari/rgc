@@ -1,0 +1,71 @@
+command:
+  - curl
+
+rules:
+  - pattern: '^(>) ([\w\-]+): (.*)'
+    name: Outgoing Headers
+    colors: [default, bright_green, bright_blue, bright_cyan]
+
+  - pattern: '^(<) ([\w\-]+): (.*)'
+    name: Incoming Headers
+    colors: [default, bright_yellow, bright_blue, bright_cyan]
+
+  - pattern: (HTTP/[\d\.]+) 2\d{2} [\w\s]+
+    name: Incoming 200
+    colors: [bright_green on_blue, bright_white on_blue]
+
+  - pattern: (HTTP/[\d\.]+) 3\d{2}[\w\s]*
+    name: Incoming 300
+    colors: [bright_green on_blue, bright_white on_blue]
+
+  - pattern: (HTTP/[\d\.]+) 4\d{2} [\w\s]+
+    name: Incoming 400
+    colors: [bright_red on_blue, bright_white on_blue]
+
+  - pattern: (HTTP/[\d\.]+) 5\d{2} [\w\s]+
+    name: Incoming 500
+    colors: [bright_red on_blue, bright_white on_blue]
+
+  - pattern: '\* (Server certificate):'
+    name: Server certificate
+    colors: [magenta, bright_magenta]
+
+  - pattern: '\*  ([a-z][\w\s\d]+): (.*)'
+    name: Certificate Headers
+    colors: [magenta, bright_blue, bright_cyan]
+
+  - pattern: SSL certificate problem:( .*)
+    name: SSL certificate problem
+    colors: [bright_red, bright_red]
+
+  - pattern: SSL certificate verify result:(.*)
+    name: 'SSL certificate verify result: self signed certificate (18), continuing anyway.'
+    colors: [bright_magenta, bright_yellow]
+
+  - pattern: SSL certificate verify (ok)
+    name: SSL certificate verify ok.
+    colors: [bright_magenta, bright_green]
+
+  - pattern: ^([{}\*])\s
+    name: Verbose Logging
+    colors: [default, bright_magenta]
+
+  - pattern: ^>\s
+    name: Outgoing
+    colors: [bright_green]
+
+  - pattern: ^<\s
+    name: Incoming
+    colors: [bright_yellow]
+
+  - pattern: ' (SSL connection) using (.*) / (.*)'
+    name: SSL connection
+    colors: [magenta, bright_magenta, bright_magenta, bright_magenta]
+
+  - pattern: (Connected) to (.*) \(([\d\.]+)\) port (\d+)
+    name: Connected to...
+    colors: [magenta, bright_magenta, bright_magenta, bright_magenta, bright_magenta]
+
+  - pattern: (GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH) (/.*) HTTP/[\d\.]+
+    name: Outgoing METHOD
+    colors: [bright_white on_blue, bright_white on_blue, bright_yellow on_blue]

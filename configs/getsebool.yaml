@@ -1,0 +1,19 @@
+command:
+  - getsebool
+
+rules:
+  - pattern: ^\S+
+    name: Name
+    colors: [default]
+
+  - pattern: '-->'
+    name: State
+    colors: [yellow]
+
+  - pattern: \s(off)
+    name: State
+    colors: [default, bright_red]
+
+  - pattern: \s(on)
+    name: State
+    colors: [default, bright_green]

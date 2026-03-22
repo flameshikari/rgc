@@ -1,0 +1,79 @@
+command:
+  - whois
+
+rules:
+  - pattern: '^([\w\s])*:'
+    name: field
+    colors: [bold white]
+
+  - pattern: :\s[\w\s\W\S]*$
+    name: data
+    colors: [blue]
+
+  - pattern: ^([;%])([\s\w\S\W])*$
+    name: comments
+    colors: [yellow]
+
+  - pattern: (^(---)|(>>>))[\s\w\S\W]*$
+    name: comments
+    colors: [yellow]
+
+  - pattern: (([\w\d]([\w\d-])+\.){1,})([\w\d-]{2,})
+    name: domain
+    colors: [green]
+
+  - pattern: http[s]?://(([\w\d]([\w\d-])+\.){1,})([\w\d-]{2,})(/[\w\d\S\s]*)*
+    name: url
+    colors: [bold green]
+
+  - pattern: \+([\d\.]*)
+    name: phone
+    colors: [bold yellow]
+
+  - pattern: ([\d\w\S])+@(([\w\d]([\w\d-])+\.){1,})([\w\d-]{2,})
+    name: email
+    colors: [bold blue]
+
+  - pattern: ([\d]{4}[- ](([\d]{2})|([a-zA-Z]{3,}))[ -][\d]{2})|([\d]{2}[ -](([a-zA-Z]{3,})|([\d]{2}))[ -][\d]{4})
+    name: date
+    colors: [bold red]
+
+  - pattern: '[\d]{2}:[\d]{2}:[\d]{2}((\.[\d]*[Z]?)|(\+[\d]*))?'
+    name: time
+    colors: [red]
+
+  - pattern: NOTICE
+    name: NOTICE
+    colors: [bold blue]
+
+  - pattern: TERMS OF USE
+    name: TERM OF USE
+    colors: [bold blue]
+
+  - pattern: '(Sponsoring )?[Rr]egistrar([\w\s\S])*:'
+    name: registrar
+    colors: [bold cyan]
+
+  - pattern: '(Registry )?[Rr]egistrant([\w\s\S])*:'
+    name: registrant
+    colors: [bold blue]
+
+  - pattern: '(Registry )?[Aa]dmin([\w\s\S])*:'
+    name: admin
+    colors: [bold magenta]
+
+  - pattern: '(Registry )?[Tt]ech([\w\s\S])*:'
+    name: tech
+    colors: [bold yellow]
+
+  - pattern: '(Registry )?[Bb]illing([\w\s\S])*:'
+    name: billing
+    colors: [bold green]
+
+  - pattern: '((nserver)|(Name Server)):'
+    name: NS
+    colors: [bold green]
+
+  - pattern: (Domain Status)|(status)
+    name: domain status
+    colors: [bold red]

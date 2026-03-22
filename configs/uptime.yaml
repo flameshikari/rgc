@@ -1,0 +1,20 @@
+command:
+  - uptime
+  - w
+
+rules:
+  - pattern: '\sup(?: (\d+) days?,)? +(\d+ min|\d+:\d+)(?=,)'
+    name: Regular Up
+    colors: [green, bold green, bold green]
+
+  - pattern: \b(\d+) users?
+    name: users
+    colors: [yellow, bold yellow]
+
+  - pattern: 'load average: (\d+[\.,]\d+),\s(\d+[\.,]\d+),\s(\d+[\.,]\d+)'
+    name: load average
+    colors: [default, bright_cyan, cyan, dark cyan]
+
+  - pattern: ^USER.*$
+    name: Title
+    colors: [bold]

@@ -1,0 +1,43 @@
+command:
+  - stat
+
+rules:
+  - pattern: (?:IO\s)?\S+:\s
+    name: Fields
+    colors: [cyan]
+
+  - pattern: 'File: ‘(\S+)’'
+    name: Filename
+    colors: [unchanged, bold]
+
+  - pattern: IO\sBlock:\s\d+\s+(.*)$
+    name: File Type
+    colors: [unchanged, bold green]
+
+  - pattern: (\w+_u):(\w+_r):(\w+_t):(\w\d)
+    name: SELinux from conf.ls
+    colors: [default, green, yellow, cyan, magenta]
+
+  - pattern: \((\d)(\d)(\d)(\d)\/
+    name: Permission Numbers
+    colors: [default, bold white, bright_green, yellow, bright_red]
+
+  - pattern: (-|([bcCdDlMnpPs?]))(?=[-r][-w][-xsStT][-r][-w][-xsStT][-r][-w][-xsStT])
+    name: File Type
+    colors: [unchanged, unchanged, bold white]
+
+  - pattern: (?<=[-bcCdDlMnpPs?])(-|(r))(-|(w))(-|([xsStT]))(?=[-r][-w][-xsStT][-r][-w][-xsStT])
+    name: owner rwx
+    colors: [unchanged, unchanged, bright_green, unchanged, bright_green, unchanged, bright_green]
+
+  - pattern: (?<=[-bcCdDlMnpPs?][-r][-w][-xsStT])(-|(r))(-|(w))(-|([xsStT]))(?=[-r][-w][-xsStT])
+    name: group rwx
+    colors: [unchanged, unchanged, yellow, unchanged, yellow, unchanged, yellow]
+
+  - pattern: (?<=[-bcCdDlMnpPs?][-r][-w][-xsStT][-r][-w][-xsStT])(-|(r))(-|(w))(-|([xsStT]))
+    name: other rwx
+    colors: [unchanged, unchanged, bright_red, unchanged, bright_red, unchanged, bright_red]
+
+  - pattern: (?<=[-bcCdDlMnpPs?])[-r][-w]([sStT])[-r][-w]([sStT])[-r][-w]([sStT])
+    name: sStT all
+    colors: [unchanged, bold green, bold yellow, bold red]

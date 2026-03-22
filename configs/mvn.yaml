@@ -1,0 +1,75 @@
+command:
+  - mvn
+
+rules:
+  - pattern: ^\[INFO\]
+    name: '[INFO]'
+    colors: [bold]
+
+  - pattern: ^\[WARNING\]
+    name: '[WARNING]'
+    colors: [bold yellow]
+
+  - pattern: ^\[ERROR\]
+    name: '[ERROR]'
+    colors: [bold red]
+
+  - pattern: BUILD FAILURE
+    name: BUILD FAILURE
+    colors: [bold red]
+
+  - pattern: ^\[debug\]
+    name: '[debug]'
+    colors: [magenta]
+
+  - pattern: \s[-]{6,}
+    name: lines [INFO] ----
+    colors: [red]
+
+  - pattern: ^[-]{6,}
+    name: lines ^----
+    colors: [yellow]
+
+  - pattern: ^ T E S T S
+    name: lines  T E S T S
+    colors: [yellow]
+
+  - pattern: '^Tests run: ([\d]+)'
+    name: 'lines ^Tests run:'
+    colors: [yellow, green]
+
+  - pattern: (Failures|Errors|Skipped):\s([\d]+)
+    name: 'lines ^Tests run: Failures/Errors/Skipped'
+    colors: [none, yellow, bold red]
+
+  - pattern: (Failures|Errors|Skipped):\s(0)\D?
+    name: 'lines ^Tests run: Failures/Errors/Skipped'
+    colors: [none, yellow, green]
+
+  - pattern: '\s(Total time: )(.*)$'
+    name: summary
+    colors: [none, none, bold yellow]
+
+  - pattern: '\s(Finished at: )(.*)$'
+    name: summary
+    colors: [none, none, bold yellow]
+
+  - pattern: \s(BUILD SUCCESSFUL)
+    name: BUILD SUCCESSFUL
+    colors: [none, green bold]
+
+  - pattern: ^(\[INFO\])( Building )(.*)$
+    name: Building projectName
+    colors: [none, bold, none, white bold]
+
+  - pattern: ([.]{3,} )(SUCCESS)( \[)([^\]]*)(])
+    name: reactor summary
+    colors: [none, none, green, none, yellow, none]
+
+  - pattern: ([.]{3,} )(FAILURE)( \[)([^\]]*)(])
+    name: reactor summary
+    colors: [none, none, red, none, red, none]
+
+  - pattern: ([.]{3,} )(SKIPPED)
+    name: reactor summary
+    colors: [none, none, yellow bold, none]

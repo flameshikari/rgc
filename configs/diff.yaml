@@ -1,0 +1,23 @@
+command:
+  - diff
+
+rules:
+  - pattern: ^\+(.*$)
+    name: new lines and filenames (unified diff)
+    colors: [bold green]
+
+  - pattern: ^\-(--.+$|[^\-].*$|$)
+    name: removed lines and filenames (unified diff)
+    colors: [bold red]
+
+  - pattern: ^\>([^\>].*|$)
+    name: new lines
+    colors: [bold green]
+
+  - pattern: ^\<([^\<].*|$)
+    name: removed lines
+    colors: [bold red]
+
+  - pattern: ^@@ .* @@$
+    name: lines affected
+    colors: [magenta]

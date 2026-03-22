@@ -1,0 +1,68 @@
+
+rules:
+  - pattern: '\] PHP [^\s]+ error:'
+    name: this configuration file is suitable for displaying php error log files
+    colors: [on_red]
+    count: once
+
+  - pattern: '\] PHP Notice:'
+    colors: [on_yellow black]
+    count: once
+
+  - pattern: '\] PHP Warning:'
+    colors: [on_cyan]
+    count: once
+
+  - pattern: '(PHP )?Stack trace:'
+    colors: [on_green]
+    count: once
+
+  - pattern: '] PHP [ \d]{2}\d\.'
+    colors: [on_green]
+    count: once
+
+  - pattern: .*last message repeated \d+ times$
+    name: display this line in yellow and stop further processing
+    colors: [yellow]
+    count: stop
+
+  - pattern: ^... (\d| )\d \d\d:\d\d:\d\d(\s[\w\d]+?\s)
+    name: this is date
+    colors: [green, green, red]
+    count: once
+
+  - pattern: \(.+?\)
+    name: everything in parentheses
+    colors: [green]
+
+  - pattern: \`.+?\'
+    name: everything in `'
+    colors: [bold yellow]
+
+  - pattern: /[\w/\.]+
+    name: this is probably a pathname
+    colors: [bold green]
+
+  - pattern: ([\w/\.\-]+)(\[\d+?\])
+    name: name of process and pid
+    colors: [bold blue, bold red]
+
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: ip number
+    colors: [bold magenta]
+
+  - pattern: connect
+    name: connect requires special attention
+    colors: [on_red]
+
+  - pattern: not found or unable to stat
+    colors: [black]
+    count: block
+
+  - pattern: File does not exist
+    colors: [italic black]
+    count: block
+
+  - pattern: ^\[
+    colors: [default]
+    count: unblock

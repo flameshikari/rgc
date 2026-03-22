@@ -1,0 +1,11 @@
+command:
+  - ntpdate
+
+rules:
+  - pattern: offset\s([0-9\.,\-]+\ssec)
+    name: time offset
+    colors: [unchanged, bold green]
+
+  - pattern: server\s([0-9a-fA-F\.:]+)
+    name: server ip
+    colors: [unchanged, yellow]

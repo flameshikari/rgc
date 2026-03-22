@@ -1,0 +1,25 @@
+command:
+  - go test
+
+rules:
+  - pattern: === RUN .*
+    name: go-test grc colorizer configuration
+    colors: [bright_blue]
+
+  - pattern: '--- PASS: .* (\(\d+\.\d+s\))'
+    colors: [green, yellow]
+
+  - pattern: ^PASS$
+    colors: [bold white on_green]
+
+  - pattern: ^(ok|FAIL)\s+.*
+    colors: [default, magenta]
+
+  - pattern: '--- FAIL: .* (\(\d+\.\d+s\))'
+    colors: [red, yellow]
+
+  - pattern: ^FAIL$
+    colors: [bold white on_red]
+
+  - pattern: '[^\s]+\.go(:\d+)?'
+    colors: [cyan]

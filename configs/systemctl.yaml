@@ -1,0 +1,64 @@
+command:
+  - systemctl
+  - systemctl show
+
+rules:
+  - pattern: \.service\s
+    name: Name
+    colors: [bright_white]
+    when: [systemctl]
+
+  - pattern: \.mount\s
+    colors: [magenta]
+    when: [systemctl]
+
+  - pattern: \.device\s
+    colors: [blue]
+    when: [systemctl]
+
+  - pattern: \.socket\s
+    colors: [cyan]
+    when: [systemctl]
+
+  - pattern: \.slice\s
+    colors: [dark red]
+    when: [systemctl]
+
+  - pattern: \.path\s
+    colors: [green]
+    when: [systemctl]
+
+  - pattern: \.target\s
+    colors: [dark magenta]
+    when: [systemctl]
+
+  - pattern: \.timer\s
+    colors: [dark cyan]
+    when: [systemctl]
+
+  - pattern: \.swap\s
+    colors: [bright_magenta]
+    when: [systemctl]
+
+  - pattern: \sloaded\s
+    colors: [cyan]
+    when: [systemctl]
+
+  - pattern: \sactive\s
+    colors: [green]
+    when: [systemctl]
+
+  - pattern: exited
+    name: exited
+    colors: [red]
+    when: [systemctl]
+
+  - pattern: running
+    name: running
+    colors: [green]
+    when: [systemctl]
+
+  - pattern: ^([^=]+)(=)(.*)$
+    name: Key=Value pairs
+    colors: [default, cyan, white, yellow]
+    when: [systemctl show]

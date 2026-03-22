@@ -1,0 +1,23 @@
+[package]
+name = "rgc"
+version = "0.1.0"
+edition = "2024"
+description = "Blazing fast command output colorizer — drop-in alternative to grc"
+license = "GPL-2.0-or-later"
+repository = "https://github.com/flameshikari/rgc"
+readme = "README.md"
+keywords = ["colorize", "regex", "terminal", "cli", "grc"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+regex = "1"
+fancy-regex = "0.14"
+is-terminal = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_yml = "0.0.12"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

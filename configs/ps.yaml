@@ -1,0 +1,75 @@
+command:
+  - ps
+
+rules:
+  - pattern: (\s|^)/[-\w\d.]+/[-\w\d./]+
+    name: /full/path
+    colors: [bold white]
+
+  - pattern: ^[A-Z\s%]*([A-Z]{3})[A-Z\s%]*$
+    name: CAPS LINE
+    colors: [underline]
+
+  - pattern: ^([A-Z][-a-z0-9]+(\s+|$)){3,}$
+    name: Capd Line
+    colors: [underline]
+
+  - pattern: (\s|^)\d+([.,]\d+)?(?=[\s,]|$)
+    name: VMSTAT
+    colors: [bright_green]
+
+  - pattern: ^[a-zA-Z]+\w+\s+(\d+)|^\d\s+\w\s+(?:\w+\s+)?(\d+)|^\s*(\d+)
+    name: PID
+    colors: [unchanged, bold magenta, bold magenta, bold magenta]
+
+  - pattern: (\s|^)\d+\.\d+\.\d+(?=[\s,]|$)
+    name: n.n.n
+    colors: [bold cyan]
+
+  - pattern: ^([-a-z0-9]+):\s
+    name: 'text:'
+    colors: [unchanged, yellow]
+
+  - pattern: (?<=\s)-[\w\d]+(?=\s|$)
+    name: '-options'
+    colors: [yellow]
+
+  - pattern: (?<=\s)--[-\w\d]+[\w\d](?==|\s|$)(=|\s)?(?!--)([^\s]*)
+    name: 'legacy: regexp=(?<=\s)--[-\w\d]+[\w\d](?==|\s|$)(=?)'
+    colors: [cyan, white, underline cyan]
+
+  - pattern: \[[-\w\d:/]+\]
+    name: '[text]'
+    colors: [cyan]
+
+  - pattern: root|wheel(?=\s|$)
+    name: root
+    colors: [bold red]
+
+  - pattern: (\s|^)pts/\d+(?=[^\w\d]|$)
+    name: pts
+    colors: [bright_yellow]
+
+  - pattern: (\s|^)tty\d+(?=[^\w\d]|$)
+    name: tty
+    colors: [bright_cyan]
+
+  - pattern: ^\d\s+\w\s+\w+\s+\d+\s+\d+\s+\d\s+\d+\s+(-\d+)
+    name: Negative NICE (works only in -l)
+    colors: [unchanged, on_red bold white]
+
+  - pattern: ^\d\s+\w\s+\w+\s+\d+\s+\d+\s+\d\s+\d+\s+(\d+)
+    name: Neutral NICE (works only in -l)
+    colors: [unchanged, cyan]
+
+  - pattern: ^\d\s+\w\s+\w+\s+\d+\s+\d+\s+\d\s+\d+\s+(1\d)
+    name: Positive NICE (works only in -l)
+    colors: [unchanged, on_cyan bold white]
+
+  - pattern: ^\d\s+([zZ])\s
+    name: Process ZOMBIE
+    colors: [unchanged, on_red bold white]
+
+  - pattern: ^\d\s+([sSrR])\s
+    name: Process RS
+    colors: [unchanged, on_magenta black]

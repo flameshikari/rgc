@@ -1,0 +1,11 @@
+command:
+  - wdiff
+
+rules:
+  - pattern: \{\+.+\+\}
+    name: new words
+    colors: [bold green]
+
+  - pattern: \[\-.+\-\]
+    name: deleted words
+    colors: [bold green]

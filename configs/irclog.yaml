@@ -1,0 +1,33 @@
+
+rules:
+  - pattern: \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    name: ip number
+    colors: [magenta]
+
+  - pattern: \*\*\*
+    name: '***'
+    colors: [bold green]
+
+  - pattern: \+\+\+
+    name: +++
+    colors: [green]
+
+  - pattern: \S+\@[\w\-\.]+
+    name: mail address
+    colors: [bold yellow]
+
+  - pattern: Signoff
+    name: Signoff
+    colors: [bold red]
+
+  - pattern: Signon
+    name: Signon
+    colors: [bold green]
+
+  - pattern: \(.+?\)
+    name: everything in parentheses
+    colors: [green]
+
+  - pattern: \#[\w\-\.]+
+    name: channel name
+    colors: [bold blue]

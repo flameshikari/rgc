@@ -1,0 +1,15 @@
+command:
+  - sysctl
+
+rules:
+  - pattern: (\w+)\.(\S+) = ?(.+)?$
+    name: Main & Last key
+    colors: [default, green, cyan, yellow]
+
+  - pattern: \w+\.(\S+(?=\.))\.
+    name: subcategories
+    colors: [unchanged, magenta]
+
+  - pattern: 'sysctl: permission denied on key ''([^'']+)'''
+    name: error
+    colors: [red, bold red]

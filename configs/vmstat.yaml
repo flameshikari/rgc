@@ -1,0 +1,23 @@
+command:
+  - vmstat
+
+rules:
+  - pattern: (procs)\s(-+memory-+)\s(-+swap-+)\s(-+io-+)\s(-+system-+)\s(-+cpu-+)
+    name: Title
+    colors: [default, bold, bold cyan, bold magenta, bold blue, bold green, bold red]
+
+  - pattern: ^(\s*\w+\s+\w+)\s+(\w+\s+\w+\s+\w+\s+\w+)\s+(\w+\s+\w+)\s+(\w+\s+\w+)\s+(\w+\s+\w+)\s+(\w+\s+\w+\s+\w+\s+\w+\s+\w+)
+    name: rows
+    colors: [default, default, bright_cyan, bright_magenta, bright_blue, bright_green, bright_red]
+
+  - pattern: ^(disk-)\s(-+reads-+)\s(-+writes-+)\s(-+IO-+)
+    name: Title disk mode
+    colors: [default, bold, bold green, bold magenta, bold blue]
+
+  - pattern: (\s+)(total\s+merged\s+sectors\s+ms)\s+(total\s+merged\s+sectors\s+ms)\s+(cur\s+sec)
+    name: Title disk mode
+    colors: [default, bold, bold green, bold magenta, bold blue]
+
+  - pattern: ^(\S+)\s+(\d+\s+\d+\s+\d+\s+\d+)\s+(\d+\s+\d+\s+\d+\s+\d+)\s+(\d+\s+\d+)
+    name: rows disk mode
+    colors: [default, bright_white, bright_green, bright_magenta, bright_blue]

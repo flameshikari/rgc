@@ -1,0 +1,47 @@
+command:
+  - df
+
+rules:
+  - pattern: ^(?!Filesystem)(\/[-\w\d.]+)+\s
+    name: regexp=^.*?\s
+    colors: [blue, bold blue]
+
+  - pattern: \s\d*[.,]?\d(K|B)i?\s|\b\d{1,3}\b
+    name: Size 'K'
+    colors: [green]
+
+  - pattern: \s\d*[.,]?\dMi?\s|\b\d{4,6}\b
+    name: Size 'M'
+    colors: [yellow]
+
+  - pattern: \s\d*[.,]?\dGi?\s|\b\d{7,9}\b
+    name: Size 'G'
+    colors: [red]
+
+  - pattern: \s\d*[.,]?\dTi?\s|\b\d{10,12}\b
+    name: Size 'T'
+    colors: [bold red]
+
+  - pattern: \/$|(\/[-\w\d. ]+)+$
+    name: Mounted on
+    colors: [green, bold green]
+
+  - pattern: \s[1-6]?[0-9]%\s
+    name: Use 0-60%
+    colors: [green]
+
+  - pattern: \s[78][0-9]%\s
+    name: Use 70-89%
+    colors: [yellow]
+
+  - pattern: \s9[0-7]%\s
+    name: Use 90-97%
+    colors: [red]
+
+  - pattern: \s9[89]%|100%\s
+    name: Use 98-100%
+    colors: [bold red]
+
+  - pattern: ^tmpfs.*
+    name: tmpfs lines
+    colors: [bright_black]

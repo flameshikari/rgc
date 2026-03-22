@@ -1,0 +1,15 @@
+command:
+  - ulimit
+
+rules:
+  - pattern: \((?:([^,)]+),\s)?(-\w)\)
+    name: (  )
+    colors: [default, magenta, cyan]
+
+  - pattern: \sunlimited
+    name: unlimited
+    colors: [bold red]
+
+  - pattern: \s\d+
+    name: number
+    colors: [yellow]

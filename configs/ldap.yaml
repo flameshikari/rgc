@@ -1,0 +1,22 @@
+command:
+  - ldap
+  - ldapsearch
+  - ldapmodify
+  - ldapadd
+  - ldapdelete
+
+rules:
+  - pattern: ^#.*
+    name: comments
+    colors: [green]
+    count: stop
+
+  - pattern: '^(version|search|result):'
+    name: meta
+    colors: [red]
+    count: stop
+
+  - pattern: '^.*?:'
+    name: '"attribute: value" pairs'
+    colors: [blue]
+    count: stop
