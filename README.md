@@ -1,6 +1,6 @@
 # rgc
 
-Blazing fast command output colorizer written in Rust. Drop-in alternative to [grc](https://github.com/garabik/grc) with bundled YAML configs for 100+ commands, automatic pipe detection, and zero runtime dependencies — everything in a single ~2.5 MB binary.
+~Blazing~ fast command output colorizer written in Rust. Drop-in alternative to [grc](https://github.com/garabik/grc) with bundled YAML configs for 100+ commands, automatic pipe detection, and zero runtime dependencies — everything in a single ~2.5 MB binary.
 
 ## Disclaimer
 
