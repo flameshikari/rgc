@@ -1,8 +1,8 @@
 [package]
 name = "rgc"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
-description = "Blazing fast command output colorizer — drop-in alternative to grc"
+description = "Fast command output colorizer — drop-in alternative to grc"
 license = "GPL-2.0-or-later"
 repository = "https://github.com/flameshikari/rgc"
 readme = "README.md"
