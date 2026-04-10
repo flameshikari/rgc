@@ -1,0 +1,113 @@
+command:
+  - nvidia-smi
+
+rules:
+  # Table borders
+  - pattern: '[+\-|=]+'
+    name: Borders
+    colors: [dark white]
+
+  # Header: NVIDIA-SMI version
+  - pattern: '(NVIDIA-SMI)\s+(\S+)'
+    name: SMI version
+    colors: [unchanged, bold green, bold cyan]
+
+  # Header: Driver Version
+  - pattern: 'Driver Version:\s+(\S+)'
+    name: Driver version
+    colors: [unchanged, bold cyan]
+
+  # Header: CUDA Version
+  - pattern: 'CUDA Version:\s+(\S+)'
+    name: CUDA version
+    colors: [unchanged, bold yellow]
+
+  # GPU name (between index and persistence mode)
+  - pattern: '\|\s+\d+\s{2}(\S+(?:\s\S+)*?)\s{3,}(?:On|Off)'
+    name: GPU name
+    colors: [unchanged, bold bright_white]
+
+  # Temperature (base — green for all)
+  - pattern: '\s(\d+C)\s'
+    name: Temperature
+    colors: [unchanged, bold green]
+
+  # Temperature warm override (50-79C)
+  - pattern: '\s([5-7]\dC)\s'
+    name: Temperature warm
+    colors: [unchanged, bold yellow]
+
+  # Temperature hot override (80+C)
+  - pattern: '\s([89]\dC)\s'
+    name: Temperature hot
+    colors: [unchanged, bold red]
+
+  # Performance state P0 (max)
+  - pattern: '\s(P0)\s'
+    name: Perf P0
+    colors: [unchanged, bold green]
+
+  # Performance state P1+ (throttled)
+  - pattern: '\s(P[1-9]|P1[0-5])\s'
+    name: Perf throttled
+    colors: [unchanged, yellow]
+
+  # Power: usage / cap
+  - pattern: '(\d+W)\s*/\s*(\d+W)'
+    name: Power
+    colors: [unchanged, bright_yellow, dark white]
+
+  # Memory: all MiB values (general)
+  - pattern: (\d+MiB)
+    name: Memory value
+    colors: [unchanged, bold magenta]
+
+  # Memory: used / total (total gets dimmer, overrides general)
+  - pattern: '(\d+MiB)\s*/\s*(\d+MiB)'
+    name: Memory usage
+    colors: [unchanged, bold magenta, dark magenta]
+
+  # GPU utilization
+  - pattern: '\s(\d+)%'
+    name: GPU utilization
+    colors: [unchanged, bold cyan]
+
+  # Bus ID
+  - pattern: '([0-9a-fA-F]{8}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}\.[0-9a-fA-F])'
+    name: Bus ID
+    colors: [unchanged, dark cyan]
+
+  # N/A values
+  - pattern: N/A
+    name: N/A
+    colors: [dark white]
+
+  # Default compute mode
+  - pattern: '\s(Default)\s'
+    name: Default mode
+    colors: [unchanged, dark white]
+
+  # On state (persistence, display)
+  - pattern: '\s(On)\s'
+    name: On
+    colors: [unchanged, bold green]
+
+  # Off state (persistence, display)
+  - pattern: '\s(Off)\s'
+    name: Off
+    colors: [unchanged, dark red]
+
+  # Process PID and type
+  - pattern: '\s(\d{4,})\s+(C|G)\s'
+    name: Process
+    colors: [unchanged, bold yellow, bold cyan]
+
+  # Process name/path
+  - pattern: '(?:C|G)\s{3}(\S+)'
+    name: Process name
+    colors: [unchanged, green]
+
+  # Processes section header
+  - pattern: '(Processes):'
+    name: Processes header
+    colors: [unchanged, bold white]
