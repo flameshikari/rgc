@@ -1,6 +1,6 @@
 [package]
 name = "rgc"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2024"
 description = "Fast command output colorizer — drop-in alternative to grc"
 license = "GPL-2.0-or-later"
