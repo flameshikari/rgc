@@ -24,11 +24,21 @@ source <(rgc --aliases)
 
 ## Installation
 
-Download from [releases](../../releases) or build from source:
+```bash
+curl -sfL https://raw.githubusercontent.com/flameshikari/rgc/master/install.sh | sudo sh
+```
+
+Or build from source:
 
 ```bash
 cargo build --release
 sudo cp target/release/rgc /usr/local/bin/
+```
+
+To update an existing installation:
+
+```bash
+rgc --update
 ```
 
 ## How It Works
