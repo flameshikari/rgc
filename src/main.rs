@@ -7,6 +7,7 @@ mod early_detect;
 mod engine;
 mod process;
 mod registry;
+mod update;
 mod yaml_config;
 
 use std::path::Path;
@@ -65,6 +66,10 @@ fn main() {
             }
             "-a" | "--aliases" => {
                 print_aliases();
+                std::process::exit(0);
+            }
+            "--update" => {
+                update::run();
                 std::process::exit(0);
             }
             "-c" | "--config" => {
@@ -477,6 +482,7 @@ fn print_usage() {
       {c}--color{r} {d}<on|off|auto>{r}  Control colorization {d}(default: auto){r}
   {c}-l{r}, {c}--list{r}                 List supported commands
   {c}-a{r}, {c}--aliases{r}              Generate shell aliases for .bashrc/.zshrc
+      {c}--update{r}               Update to the latest release from GitHub
   {c}-h{r}, {c}--help{r}                 Show this help
   {c}-v{r}, {c}--version{r}              Show version
 
