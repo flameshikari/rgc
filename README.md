@@ -20,7 +20,12 @@ ps aux | rgc
 
 # generate shell aliases so every command is colorized automatically
 source <(rgc --aliases)
+
+# same, but only for commands actually installed on this machine
+source <(rgc --aliases --if-exists)
 ```
+
+`--if-exists` filters the alias list to commands present in `$PATH`, so you don't end up with aliases that shadow nothing (and would otherwise produce a `command not found` error from rgc instead of the shell). The scan parallelizes one `read_dir` per PATH entry.
 
 ## Installation
 
